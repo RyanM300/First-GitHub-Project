@@ -1,0 +1,23 @@
+.main{
+    margin: auto;
+    padding: 3em;
+    background: blueviolet;
+    color: white;
+    text-align: center;
+}
+
+.main h1{
+    text-align: center;
+    text-decoration: wavy;
+    font-family: cursive;
+    background: teal;
+    text-decoration-color: white;
+}
+
+.border-1{
+    background: teal;
+    border: 1em;
+    padding: 4em;
+    border-style: dotted, red;
+
+}
