@@ -1,6 +1,5 @@
-html{
-    margin: 0%;
-    padding: 0%;
+* {
+    box-sizing: border-box;
 }
 
 header, footer{
@@ -11,7 +10,7 @@ header, footer{
 
 section{
     float: left;
-    width: 33%;
+    width: 33.33%;
     border: 3px solid black;
     height: 100px;
 }
