@@ -1,0 +1,28 @@
+*{
+    box-sizing: border-box;
+}
+
+.top{
+    text-align: center;
+    color: green;
+    border: 5px solid red;
+}
+
+.content{
+    border: 5px solid red;
+    float: left;
+    width: 33.33%;
+}
+
+.last{
+    border: 5px solid red;
+    float: left;
+    width: 50%;
+}
+
+.end{
+    border: 5px solid red;
+    text-align: center;
+    color: green;
+    clear: both;
+}
