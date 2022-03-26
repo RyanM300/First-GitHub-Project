@@ -1,0 +1,37 @@
+*{
+    box-sizing: border-box;
+}
+.top{
+    border: 5px solid green;
+    color: blue;
+    background: yellow;
+    text-align: center;
+}
+
+.navbar{
+    border: 5px solid green;
+    color: blue;
+    background: yellow;
+    text-align: center;
+    text-decoration: none;
+}
+
+.left{
+    float: left;
+    width: 30%;
+    border: 5px solid green;
+    background: yellow;
+}
+
+.content{
+    float: right;
+    width: 70%;
+    border: 5px solid green;
+    background: yellow;
+}
+
+.end{
+    clear: both;
+    border: 5px solid green;
+    background: yellow;
+}
