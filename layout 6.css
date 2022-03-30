@@ -1,0 +1,51 @@
+* {
+    box-sizing: border-box;
+}
+
+header nav > *{
+    float: left;
+    width: 15%;
+    margin: 0 5%;
+    list-style: none;
+}
+
+header nav li{
+    float: left;
+    width: 16.66%;
+    padding: 0 15px;
+}
+
+header article > *{
+    float: left;
+    width: 100%;
+    margin: 0 5%;
+    list-style: none;
+}
+
+header article > h1 {
+    padding-top: 100px;
+}
+
+header {
+    height: 500px;
+    background-image: url(/images/background.jpg);
+}
+
+.second {
+    float: left;
+    width: 100%;
+    margin: 0 0 0 50%;
+    list-style: none;
+    padding-top: 100px;
+    color: blue;
+}
+
+p {
+    width: 400px;
+}
+
+.class {
+    float: left;
+    width: 16.6%;
+    
+}
