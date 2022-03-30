@@ -1,0 +1,38 @@
+* {
+    box-sizing: border-box;
+}
+
+header nav > *{
+    float: left;
+    width: 22%;
+    margin: 0 5%;
+    list-style: none;
+}
+
+header nav li{
+    float: left;
+    width: 25%;
+    padding: 0 25px;
+}
+
+.left, .right{
+    float: left;
+    width: 50%;
+    padding-top: 80px;
+}
+
+.sec{
+    float: left;
+    width: 25%;
+    padding-top: 25px;
+}
+
+@media screen and (max-width:900px) { 
+    header nav li{
+        display: none;
+    }
+
+    .left, .right, .sec{
+        width: 100%;
+    }
+}
