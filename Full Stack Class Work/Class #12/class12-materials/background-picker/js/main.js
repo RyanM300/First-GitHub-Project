@@ -1,19 +1,21 @@
-document.getElementById('purple').onclick = Purple
-document.getElementById('green').onclick = Green
-document.getElementById('blue').onclick = Blue
+document.getElementById('purple').onclick = purple
+document.getElementById('green').onclick = green
+document.getElementById('blue').onclick = blue
+document.getElementById('pink').onclick = pink
 
-
-function Purple() {
-  document.querySelector('body').style.backgroundColor = 'rgba(241,63,247,1)'
-  document.querySelector('body').style.color = 'white'
+function purple() {
+  document.querySelector('body').style.backgroundColor = "purple"
+  document.querySelector('body').styles.color = "white"
 }
-
-function Green() {
-  document.querySelector('body').style.backgroundColor = 'rgba(0,253,81,1)'
-  document.querySelector('body').style.color = 'white'
+function green() {
+  document.querySelector('body').style.backgroundColor = "green"
+  document.querySelector('body').styles.color = "white"
 }
-
-function Blue() {
-  document.querySelector('body').style.backgroundColor = 'rgba(0,254,255)'
-  document.querySelector('body').style.color = 'white'
+function blue() {
+  document.querySelector('body').style.backgroundColor = "blue"
+  document.querySelector('body').styles.color = "white"
+}
+function pink() {
+  document.querySelector('body').style.backgroundColor = "pink"
+  document.querySelector('body').styles.color = "white"
 }
