@@ -1,48 +1,45 @@
 
 body {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
   }
   
-  h1 {
-    display: flex;
-    justify-content: center;
-    font-size: 4rem;
-    font-family: "Cookie";
-    padding: 20px;
-    margin: 15px;
-    z-index: 2;
-    opacity: 0.7;
+h1 {
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  font-weight: 600;
   }
   
-  .video-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 0;
+.main_video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  object-fit: cover;
   }
 
-  ul {
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-end;
-    opacity: 0.7;
+ul {
+  display: flex;
+  justify-content: space-around;
+  width: 1000px;
+  opacity: 0.7;
   }
 
-  li {
-      list-style: none;
-      display: flex;
-      align-items: center;
-      padding: 0 5px;
-      border: 1px solid black;
-      width: 100px;
-      height: 100px;
-      cursor: pointer;
-  }
-
-  a:hover {
-      background-color: red;
+li {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 5px;
+  border: 2px solid black;
+  width: 125px;
+  height: 125px;
+  cursor: pointer;
+  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.527);
   }
