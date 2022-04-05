@@ -41,9 +41,9 @@ function multiplys(muw1,muw2,muw3){
 multiplys(4,1,16)
 //*Loops*
 //Create a function that takes in a word and a number. Console log the word x times where x was the number passed in
-function multiply(){
-    for(let i = 1; i < 15; i++){
-        console.log(' loopsaregreatttt')
+function multiply(num){
+    for(let i = 1; i <= num; i++){
+        console.log('happy')
     }
 }
-multiply()
+multiply(100)
