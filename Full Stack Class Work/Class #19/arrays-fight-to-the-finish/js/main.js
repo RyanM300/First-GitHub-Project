@@ -6,7 +6,7 @@ for(let i = 0; i < movies.length; i++) {
 }
 
 //Create an array of numbers. Loop through the array add three to each number and 
-//replace the old number.
+//replace the old number
 let numb = [10, 20, 30]
 
 numb.forEach((item, index) => {
