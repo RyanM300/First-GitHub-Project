@@ -1,1 +1,3 @@
-//Create a dog object that has four properties and three methods
+//Create a mouse object that has four properties and three methods
+
+let mouse = {}
