@@ -1,11 +1,11 @@
 // *Variables*
 // Declare a variable and assign it to a sentance as a string. Alert if the sentance is a question
 const str = 'Is this the best week ever?'
-//alert( str.endsWith('?') )
+alert( str.endsWith('?') )
 
 //Declare a variable, assign it a string of multiple words, replace every "jr. dev" with "software engineer", and print it to the console
 let strToChange = 'I am looking for jr. dev positions.'
-//console.log(  strToChange.replaceAll('jr. dev','software engineering') )
+console.log(  strToChange.replaceAll('jr. dev','software engineering') )
 
 // *Functions*
 // Create a function that returns rock, paper, or scissors as randomly as possible
@@ -37,4 +37,9 @@ function checkWin(playerChoice){
 checkWin('paper')
 
 //*Loops*
-//Create a function that takes an array of choices. Play the game x times where x is the number of choices in the array. Print the results of each game to the console.
+//Create a function that takes an array of choices. Play the game x times where x is 
+//the number of choices in the array. Print the results of each game to the console.
+function gamesPlay(arr){
+    arr.forEach(element => checkWin(element) )
+}
+gamesPlay(['rock','paper','scissors'])
