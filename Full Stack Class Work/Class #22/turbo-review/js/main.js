@@ -4,6 +4,7 @@
 let str = 'This is a sentence.'
 //Declare a variable, assign it a string of multiple words, replace every "jr. dev" 
 //with "software engineer", and print it to the console
+let sen = 'I am a jr.dev currently'
 
 // *Functions*
 // Create a function that returns rock, paper, or scissors as randomly as possible
