@@ -30,8 +30,8 @@ video{
     font-size: 48px;
     width: 550px;
     color: white;
-    font-weight: 1000;
-    opacity: .70;
+    font-weight: 1000; 
+    padding-top: 150px;   
 }
 
 #words {
@@ -39,7 +39,6 @@ video{
     width: 500px;
     color: white;
     font-weight: 700;
-    opacity: .70;
 }
 
 #sendIt {
