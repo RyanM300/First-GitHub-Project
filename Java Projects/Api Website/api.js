@@ -1,8 +1,10 @@
 document.querySelector('button').addEventListener('click', getPhoto)
 let search = document.querySelector('input').value
 
-function getPhoto(){
-    const url = 'https://api.nasa.gov/planetary/apod?date=${search}'
+function getPhoto() {
+    let search = document.querySelector('input').value
+    let url = `https://api.nasa.gov/planetary/apod?date= + ${search}`
+    
     fetch(url)
         .then(res => res.json()) // parse response as JSON
         .then(data => {
