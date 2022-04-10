@@ -4,30 +4,57 @@
     box-sizing: border-box;
 }
 
-body * {
+#sendIt:hover{
+    background-color: black;
+    color: white;
+}
+
+.main *{
     margin: 0 auto;
     width: 400px;
     padding: 25px 0;
+    display: block;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 26px 0;
 }
 
-h1{
+video{
+    height: 100%vh;
+    width: 100%vw;
+    position: fixed;
+    z-index: -1;
+}
+
+#title {
     font-size: 48px;
     width: 550px;
+    color: white;
+    font-weight: 1000;
+    opacity: .70;
 }
 
-p{
+#words {
     font-size: 20px;
     width: 500px;
+    color: white;
+    font-weight: 700;
+    opacity: .70;
 }
 
-.sendIt {
+#sendIt {
     display: block;
     margin: 0 auto;
     cursor: pointer;
+    width: 100px;
+    padding: 15px 0;
+    background-color: white;
+    opacity: .70;
 }
 
 img{
     display: block;
     margin: 0 auto;
     padding: 26px 0;
+    opacity: .70;
 }

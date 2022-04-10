@@ -8,16 +8,20 @@
     <link rel="stylesheet" href="api.css">
 </head>
 <body>
-    <h1>NASA Picture of The Day</h1>
+    <video src="/Personal Projects/Videos/spacevid.mp4" playsinline muted loop autoplay></video>
     
-    <p>Ever wanted to see what space looks like and how scary its' vastness is? 
-        Click the button and you can do just that!
-    </p>
-    
-    <button class="sendIt">Click Me Now</button>
-    
-    <img class="placeToPutIt" src="" alt="">
-    
+    <div class="main">
+        <h1 id="title">NASA Picture of The Day</h1>
+        
+        <p id="words">Ever wanted to see what space looks like and how scary its' vastness is? 
+            Click the button and you can do just that!
+        </p>
+        
+        <button id="sendIt">Click Me Now</button>
+        
+        <img id="placeToPutIt" src="" alt="">
+    </div>
+
     <script type ="text/javascript" src="./api.js"></script>
 </body>
 </html>
