@@ -1,5 +1,4 @@
 document.querySelector('button').addEventListener('click', getPhoto)
-let search = document.querySelector('input').value
 
 function getPhoto() {
     let search = document.querySelector('input').value
