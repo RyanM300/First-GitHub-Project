@@ -2,7 +2,7 @@
 let deckId = ''
 
 //getting the deckids
-fetch('https://www.deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6')
+fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6')
       .then(res => res.json()) 
       .then(data => {
         console.log(data)
@@ -11,14 +11,14 @@ fetch('https://www.deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6')
       })
       .catch(err => {
           console.log(`error ${err}`)
-      });
-
+});
 
 document.querySelector('#startGame').addEventListener('click', startDeck)
 
+
 //starting the game
 function startDeck(){
-  const url = `https://www.deckofcardsapi.com/api/deck/${deckId}/draw/?count=4`
+  const url = `https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=4`
 
   fetch(url)
       .then(res => res.json())
@@ -45,9 +45,73 @@ function startDeck(){
       .catch(err => {
           console.log(`error ${err}`)
       });
+
+  document.querySelector('#hit').addEventListener('click', hitIt)
+
+//Function for the hit button
+  function hitIt(){
+  //Create a new variable for the hit button to get a new card
+    let hitButton = `https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`
+    //fetch the new card      
+      fetch(hitButton)
+        .then(res => res.json())
+        .then(data => {
+          console.log(data)
+          //determine what card get drawn
+          if(document.querySelector('#playerc').style.visibility !== 'visible') {
+            document.querySelector('#playerc').src = data.cards[0].image
+            document.querySelector('#playerc').style.visibility = 'visible'
+          }else if(document.querySelector('#playerd').style.visibility !== 'visible') {
+            document.querySelector('#playerd').src = data.cards[0].image
+            document.querySelector('#playerd').style.visibility = 'visible'
+          }else if(document.querySelector('#playere').style.visibility !== 'visible') {
+              document.querySelector('#playere').src = data.cards[0].image
+              document.querySelector('#playere').style.visibility = 'visible'
+          }else{
+            document.querySelector('#playerf').src = data.cards[0].image
+            document.querySelector('#playerf').style.visibility = 'visible'
+          }
+        })
+        .catch(err => {
+          console.log(`error ${err}`)
+        }); 
+  }
+
+//Use another button to reset the game
+  document.querySelector('#reset').addEventListener('click', fkey)
+
+  function fkey() {
+    window.location.reload(true);
+  }
+
+//use the stay button to trigger the dealer draw
+document.querySelector('#stay').addEventListener('click', dealerDraw)
+
+function dealerDraw() {
+  
+  let dealerHit = `https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`
+
+  fetch(dealerHit)
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      document.querySelector('#dealera').src = data.cards[0].image
+     
+      console.log()
+  })    
 }
+
+
+
+
+
+
+
+
+}
+
 //Value of face cards
-function convertToNum(val){
+function convertToNum(val) {
   if(val === 'ACE'){
     return 11
   }else if(val === 'KING'){
