@@ -5,24 +5,33 @@
     	<meta name="description" content="This is where your description goes">
     	<meta name="keywords" content="one, two, three">
 
-		<title>War!</title>
+		<title>Blackjack!</title>
 
 		<!-- external CSS link -->
 		<link rel="stylesheet" href="css/normalize.css">
-		<link rel="stylesheet" href="">
+		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
-
-        <button>Deal Cards!</button>
-
+		<!--<img id="background" src="./img/gif.gif" alt="">-->
 		<h1>Card Game!</h1>
-        <h2>Player 1</h2>
-        <img id="player1" src="" alt="">
-        <h2>Player 2</h2>
-        <img id="player2" src="" alt="">
 
-        <h3>Result</h3>
+		<button id="startGame">Deal Two Cards!</button>
 
-		<script type="text/javascript" src="./main.js"></script>
+		<h2>Dealer</h2>
+		<div class="dealerCards">
+			<img id="dealera" src="" alt="playing card">
+			<img id="dealerb" src="" alt="playing card">
+			<h3 id="dealerCounter">Count:</h3>
+		</div>
+		<h2>Player</h2>
+		<div class="playerCards">
+			<img id="playera" src="" alt="playing card">
+			<img id="playerb" src="" alt="playing card">
+			<h3 id="playerCounter">Count:</h3>
+		</div>
+		
+		<h2 id="result">Result</h2>
+
+		<script type="text/javascript" src="./js/main.js"></script>
 	</body>
 </html>
