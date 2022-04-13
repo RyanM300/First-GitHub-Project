@@ -24,6 +24,7 @@ function startDeck(){
       .then(res => res.json())
       .then(data => {
         console.log(data)
+        document.querySelector('#whole').style.visibility = 'visible' 
         //Initial cards
         document.querySelector('#dealera').src = "./img/fixed poker card.png"
         document.querySelector('#playera').src = data.cards[1].image
