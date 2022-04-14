@@ -1,3 +1,4 @@
+
 //different deckid's for the api
 let deckId = ''
 let playercVal = ''
@@ -119,25 +120,18 @@ function startDeck(){
   }
 
 
-
-
-
-
-
-
-}
-
 //Value of face cards
-function convertToNum(val) {
-  if(val === 'ACE'){
-    return 11
-  }else if(val === 'KING'){
-    return 10
-  }else if(val === 'QUEEN'){
-    return 10
-  }else if(val === 'JACK'){
-    return 10
-  }else{
-    return Number(val)
+  function convertToNum(val) {
+    if(val === 'ACE'){
+      return 11
+    }else if(val === 'KING'){
+      return 10
+    }else if(val === 'QUEEN'){
+      return 10
+    }else if(val === 'JACK'){
+      return 10
+    }else{
+      return Number(val)
+    }
   }
 }
