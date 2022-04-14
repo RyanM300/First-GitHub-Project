@@ -1,5 +1,14 @@
 //different deckid's for the api
 let deckId = ''
+let playercVal = ''
+let playerdVal = ''
+let playereVal = ''
+let playerfVal = ''
+let dealeraVal = ''
+let dealercVal = ''
+let dealerdVal = ''
+let dealereVal = ''
+let dealerfVal = ''
 
 //getting the deckids
 fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6')
@@ -19,7 +28,7 @@ document.querySelector('#startGame').addEventListener('click', startDeck)
 //starting the game
 function startDeck(){
   const url = `https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=4`
-
+  
   fetch(url)
       .then(res => res.json())
       .then(data => {
@@ -47,6 +56,7 @@ function startDeck(){
       });
 
   document.querySelector('#hit').addEventListener('click', hitIt)
+     
 
 //Function for the hit button
   function hitIt(){
@@ -61,15 +71,23 @@ function startDeck(){
           if(document.querySelector('#playerc').style.visibility !== 'visible') {
             document.querySelector('#playerc').src = data.cards[0].image
             document.querySelector('#playerc').style.visibility = 'visible'
+            let playercVal = convertToNum(data.cards[0].value)
+            
           }else if(document.querySelector('#playerd').style.visibility !== 'visible') {
             document.querySelector('#playerd').src = data.cards[0].image
             document.querySelector('#playerd').style.visibility = 'visible'
+            let playerdVal = convertToNum(data.cards[0].value)
+            
           }else if(document.querySelector('#playere').style.visibility !== 'visible') {
               document.querySelector('#playere').src = data.cards[0].image
               document.querySelector('#playere').style.visibility = 'visible'
+              let playereVal = convertToNum(data.cards[0].value)
+              
           }else{
             document.querySelector('#playerf').src = data.cards[0].image
             document.querySelector('#playerf').style.visibility = 'visible'
+            let playerfVal = convertToNum(data.cards[0].value)
+            
           }
         })
         .catch(err => {
@@ -85,21 +103,20 @@ function startDeck(){
   }
 
 //use the stay button to trigger the dealer draw
-document.querySelector('#stay').addEventListener('click', dealerDraw)
+  document.querySelector('#stay').addEventListener('click', dealerDraw)
 
-function dealerDraw() {
-  
-  let dealerHit = `https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`
+  function dealerDraw() {
+    
+    let dealerHit = `https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`
 
-  fetch(dealerHit)
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-      document.querySelector('#dealera').src = data.cards[0].image
-     
-      console.log()
-  })    
-}
+    fetch(dealerHit)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        document.querySelector('#dealera').src = data.cards[0].image
+      
+    })    
+  }
 
 
 
