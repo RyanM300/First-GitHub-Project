@@ -103,6 +103,16 @@ h1, h2, .cards, h3 {
   border: 4px solid black;
 }
 
+#gameResult {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 75px;
+  font-size: 48px;
+  font-weight: 2000;
+  text-shadow: grey 3px 3px;
+}
+
 #result, #dealerc, #dealerd, #dealere, #playerc, #playerd, #playere {
   visibility: hidden;
 }

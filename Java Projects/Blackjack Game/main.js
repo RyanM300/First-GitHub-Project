@@ -14,10 +14,12 @@ let dealerdVal = 0
 let dealereVal = 0
 let dealerfVal = 0
 
-let second = 0
+let first = 0
 let sum = 0
-let dealScreenCount = []
+let dealSum = 0
 let playScreenCount = [playeraVal, playerbVal, playercVal, playerdVal, playereVal, playerfVal]
+let dealScreenCount = [dealeraVal, dealerbVal, dealercVal, dealerdVal, dealereVal, dealerfVal]
+let firstSum = 0
 
 //getting the deckids
 fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6')
@@ -32,8 +34,10 @@ fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6')
 });
 
 function convertToNum(val) {
-  if(val === 'ACE'){
-      return 11
+  if(val === 'ACE' && first === 22){
+      return 1   
+  }else if(val === 'ACE'){
+    return 11
   }else if(val === 'KING'){
     return 10
   }else if(val === 'QUEEN'){
@@ -50,7 +54,7 @@ document.querySelector('#startGame').addEventListener('click', startDeck)
 
 //starting the game
 function startDeck(){
-  const url = `https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=4`
+  const url = `https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=3`
   
   fetch(url)
       .then(res => res.json())
@@ -59,13 +63,14 @@ function startDeck(){
         document.querySelector('#whole').style.visibility = 'visible' 
         //Initial cards
         document.querySelector('#dealera').src = "./img/fixed poker card.png"
-        document.querySelector('#playera').src = data.cards[1].image
-        document.querySelector('#dealerb').src = data.cards[2].image 
-        document.querySelector('#playerb').src = data.cards[3].image
-        playeraVal = data.cards[1].value
-        playerbVal = data.cards[3].value
+        document.querySelector('#playera').src = data.cards[0].image
+        document.querySelector('#dealerb').src = data.cards[1].image 
+        document.querySelector('#playerb').src = data.cards[2].image
+        playeraVal = data.cards[0].value
+        playerbVal = data.cards[2].value
+        dealerbVal = data.cards[1].value
         //Value Calculating
-        let dealerVal = convertToNum(data.cards[0].value) + convertToNum(data.cards[2].value)
+        /*let dealerVal = convertToNum(data.cards[0].value) + convertToNum(data.cards[2].value)
         let playerVal = convertToNum(data.cards[1].value) + convertToNum(data.cards[3].value)
         //Win, tie, or lose scenerios
         if(dealerVal > playerVal){
@@ -74,10 +79,15 @@ function startDeck(){
           document.querySelector('#result').innerText = 'You Win!!!'
         }else{
           document.querySelector('#result').innerText = 'Time for War!'
-        }
+        } */
 
-        document.querySelector('#playerCounter').innerText = convertToNum(data.cards[1].value) + convertToNum(data.cards[3].value)
+         first = convertToNum(data.cards[0].value) + convertToNum(data.cards[2].value)
 
+         document.querySelector('#playerCounter').innerText = first
+
+         if(first === 21){
+          document.querySelector('#playerCounter').innerText = '21!!!'
+         }
       })
       .catch(err => {
           console.log(`error ${err}`)
@@ -137,7 +147,7 @@ function startDeck(){
           second = playScreenCount.map((num) => convertToNum(num))
           console.log(second)
 
-          let sum = second.reduce((partialSum, a) => partialSum + a, 0)
+          sum = second.reduce((partialSum, a) => partialSum + a, 0)
 
           document.querySelector('#playerCounter').innerText = sum
 
@@ -169,10 +179,82 @@ function startDeck(){
       .then(data => {
         console.log(data)
         document.querySelector('#dealera').src = data.cards[0].image
-      
+        dealeraVal = data.cards[0].value
+
+        firstSum = convertToNum(dealeraVal) + convertToNum(dealerbVal)
+
+        if(firstSum === 21) {
+          document.querySelector('#dealerCounter').innerText = '21'
+        }else if(firstSum === 17) {
+          document.querySelector('#dealerCounter').innerText = firstSum
+        }else if(document.querySelector('#playerCounter').innerText === 'BUST!') {
+          document.querySelector('#dealerCounter').innerText = firstSum
+          document.querySelector('#gameResult').innerText = "Dealer Wins"
+        }else if(firstSum > 17) {
+          document.querySelector('#dealerCounter').innerText = firstSum
+        }else {
+          fetch(dealerHit)
+            .then(res => res.json())
+            .then(data => {
+              console.log(data)
+              //determine how many cards the dealer draws
+              if(document.querySelector('#dealerc').style.visibility !== 'visible') {
+                document.querySelector('#dealerc').src = data.cards[0].image
+                document.querySelector('#dealerc').style.visibility = 'visible'
+                dealercVal = data.cards[0].value
+                
+                
+              }else if(document.querySelector('#dealerd').style.visibility !== 'visible') {
+                document.querySelector('#dealerd').src = data.cards[0].image
+                document.querySelector('#dealerd').style.visibility = 'visible'
+                dealerdVal = data.cards[0].value
+               
+                
+              }else if(document.querySelector('#dealere').style.visibility !== 'visible') {
+                  document.querySelector('#dealere').src = data.cards[0].image
+                  document.querySelector('#dealere').style.visibility = 'visible'
+                  dealereVal = data.cards[0].value
+                 
+                  
+              }else{
+                document.querySelector('#dealerf').src = data.cards[0].image
+                document.querySelector('#dealerf').style.visibility = 'visible'
+                dealerfVal = data.cards[0].value
+                
+              }
+            
+              dealScreenCount = [dealeraVal, dealerbVal, dealercVal, dealerdVal, dealereVal, dealerfVal]
+            
+            
+              third = dealScreenCount.map((num) => convertToNum(num))
+              console.log(third)
+
+              dealSum = third.reduce((partialSum, a) => partialSum + a, 0)
+
+              document.querySelector('#dealerCounter').innerText = dealSum
+
+            if(dealSum > 21){
+              document.querySelector('#dealerCounter').innerText = 'BUST!'
+              document.querySelector('#gameResult').innerText = "You Win!!!"
+            }else if(dealSum === 21){
+              document.querySelector('#dealerCounter').innerText = '21!!!'
+            }
+
+
+      if(firstSum > first || firstSum > sum || dealSum > sum || document.querySelector('#dealerCounter').innerText === 'BUST!'){
+        document.querySelector('#gameResult').innerText = "You Win!!!"
+      }else if(firstSum < first || firstSum < sum || dealSum < sum ){
+        document.querySelector('#gameResult').innerText = "Dealer Wins"
+      }else{
+        document.querySelector('#gameResult').innerText = "It's a Tie!!!"
+      }
+
+
+
+      })
+      }  
     })    
   }
-
 };
 
 
