@@ -14,9 +14,10 @@ let dealerdVal = 0
 let dealereVal = 0
 let dealerfVal = 0
 
-let playScreenCount = []
+let second = 0
+let sum = 0
 let dealScreenCount = []
-
+let playScreenCount = [playeraVal, playerbVal, playercVal, playerdVal, playereVal, playerfVal]
 
 //getting the deckids
 fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6')
@@ -74,13 +75,16 @@ function startDeck(){
         }else{
           document.querySelector('#result').innerText = 'Time for War!'
         }
+
+        document.querySelector('#playerCounter').innerText = convertToNum(data.cards[1].value) + convertToNum(data.cards[3].value)
+
       })
       .catch(err => {
           console.log(`error ${err}`)
       });
 
   document.querySelector('#hit').addEventListener('click', hitIt)
-
+  
 
   
 //Use another button to reset the game
@@ -93,7 +97,7 @@ function startDeck(){
      
 
 //Function for the hit button
-  function hitIt(){
+  function hitIt() {
   //Create a new variable for the hit button to get a new card
       let hitButton = `https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`
     //fetch the new card      
@@ -130,17 +134,28 @@ function startDeck(){
 
           playScreenCount = [playeraVal, playerbVal, playercVal, playerdVal, playereVal, playerfVal]
 
+          second = playScreenCount.map((num) => convertToNum(num))
+          console.log(second)
 
-         let b = playScreenCount.map((num) => console.log(convertToNum(num)))
-         
-         console.log(b)
-           
+          let sum = second.reduce((partialSum, a) => partialSum + a, 0)
+
+          document.querySelector('#playerCounter').innerText = sum
+
+          if(sum > 21){
+            document.querySelector('#playerCounter').innerText = 'BUST!'
+          }else if(sum === 21){
+            document.querySelector('#playerCounter').innerText = '21!!!'
+          }
 
 
+        })   
         .catch(err => {
           console.log(`error ${err}`)
         }); 
-  })
+
+
+
+  }
 
 //use the stay button to trigger the dealer draw
   document.querySelector('#stay').addEventListener('click', dealerDraw)
@@ -158,6 +173,7 @@ function startDeck(){
     })    
   }
 
-//Value of face cards
-  
-}}
+};
+
+
+

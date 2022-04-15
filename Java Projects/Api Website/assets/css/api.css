@@ -24,9 +24,9 @@
     padding: 26px 0;
 }
 
-video{
-    height: 100%vh;
-    width: 100%vw;
+video {
+    height: 100% vh;
+    width: 100% vw;
     position: fixed;
     z-index: -1;
 }
