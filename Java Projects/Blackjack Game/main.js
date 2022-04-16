@@ -34,7 +34,7 @@ fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6')
 });
 
 function convertToNum(val) {
-  if(val === 'ACE' && (playSum < 11 || dealSum < 11)) {
+  if(val === 'ACE' && (playSum < 22 || dealSum < 22)) {
     return 11   
   }else if(val === 'ACE'){
     return 1
@@ -210,7 +210,7 @@ function startDeck(){
             document.querySelector('#gameResult').innerText = "It's a Tie!!!"
           } ;
         }, 500);
-
+        
         if(dealSum === 21) {
           document.querySelector('#dealerCounter').innerText = '21'
         }else if(dealSum === 17) {
@@ -219,8 +219,6 @@ function startDeck(){
           document.querySelector('#dealerCounter').innerText = dealSum
           document.querySelector('#gameResult').innerText = "Dealer Wins"
         }else if(dealSum > 17) {
-          document.querySelector('#dealerCounter').innerText = dealSum
-        }else if(dealSum > first){
           document.querySelector('#dealerCounter').innerText = dealSum
         }else {
          //CALL THE FUNCTION AGAIN!!!
