@@ -159,6 +159,7 @@ function startDeck(){
 
           if(playSum > 21){
             document.querySelector('#playerCounter').innerText = 'BUST!'
+            dealerDraw()
           }else if(playSum === 21){
             document.querySelector('#playerCounter').innerText = '21!!!'
           }
