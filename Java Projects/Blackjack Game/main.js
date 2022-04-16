@@ -192,6 +192,8 @@ function startDeck(){
           document.querySelector('#gameResult').innerText = "Dealer Wins"
         }else if(firstSum > 17) {
           document.querySelector('#dealerCounter').innerText = firstSum
+        }else if(firstSum > first){
+          document.querySelector('#dealerCounter').innerText = firstSum
         }else {
           fetch(dealerHit)
             .then(res => res.json())
@@ -239,21 +241,18 @@ function startDeck(){
             }else if(dealSum === 21){
               document.querySelector('#dealerCounter').innerText = '21!!!'
             }
+          })
+        }
+      })    
 
-
-      if(firstSum > first || firstSum > sum || dealSum > sum || document.querySelector('#dealerCounter').innerText === 'BUST!'){
-        document.querySelector('#gameResult').innerText = "You Win!!!"
-      }else if(firstSum < first || firstSum < sum || dealSum < sum ){
-        document.querySelector('#gameResult').innerText = "Dealer Wins"
-      }else{
-        document.querySelector('#gameResult').innerText = "It's a Tie!!!"
-      }
-
-
-
-      })
-      }  
-    })    
+  if(firstSum > first || firstSum > sum || dealSum > sum || document.querySelector('#dealerCounter').innerText === 'BUST!'){
+    document.querySelector('#gameResult').innerText = "You Win!!!"
+  }else if(firstSum < first || firstSum < sum || dealSum < sum ){
+    document.querySelector('#gameResult').innerText = "Dealer Wins"
+  }else{
+    document.querySelector('#gameResult').innerText = "It's a Tie!!!"
+  }
+     
   }
 };
 
