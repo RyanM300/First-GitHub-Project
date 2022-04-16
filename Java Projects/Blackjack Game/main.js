@@ -197,6 +197,7 @@ function startDeck(){
 
         document.querySelector('#dealerCounter').innerText = dealSum
 
+        evaluate()
 
         setTimeout(function() {
           if(dealSum > 21){
@@ -209,45 +210,77 @@ function startDeck(){
           }else{
             document.querySelector('#gameResult').innerText = "It's a Tie!!!"
           } ;
-        }, 500);
+        }, 3000);
         
-        if(dealSum === 21) {
-          document.querySelector('#dealerCounter').innerText = '21'
-        }else if(dealSum === 17) {
-          document.querySelector('#dealerCounter').innerText = dealSum
-        }else if(document.querySelector('#playerCounter').innerText === 'BUST!') {
-          document.querySelector('#dealerCounter').innerText = dealSum
-          document.querySelector('#gameResult').innerText = "Dealer Wins"
-        }else if(dealSum > 17) {
-          document.querySelector('#dealerCounter').innerText = dealSum
-        }else {
-         //CALL THE FUNCTION AGAIN!!!
-          fetch(dealerHit)
-            .then(res => res.json())
-            .then(data => {
-              console.log(data)
-              //determine how many cards the dealer draws
-              if(document.querySelector('#dealerc').style.visibility !== 'visible') {
-                document.querySelector('#dealerc').src = data.cards[0].image
-                document.querySelector('#dealerc').style.visibility = 'visible'
-                dealercVal = data.cards[0].value
-                
-              }else if(document.querySelector('#dealerd').style.visibility !== 'visible') {
-                document.querySelector('#dealerd').src = data.cards[0].image
-                document.querySelector('#dealerd').style.visibility = 'visible'
-                dealerdVal = data.cards[0].value
-               
-              }else if(document.querySelector('#dealere').style.visibility !== 'visible') {
-                  document.querySelector('#dealere').src = data.cards[0].image
-                  document.querySelector('#dealere').style.visibility = 'visible'
-                  dealereVal = data.cards[0].value
-                 
-              }else{
-                document.querySelector('#dealerf').src = data.cards[0].image
-                document.querySelector('#dealerf').style.visibility = 'visible'
-                dealerfVal = data.cards[0].value
-              }
+        function evaluate(){
+          if(dealSum === 21) {
+            document.querySelector('#dealerCounter').innerText = '21'
+          }else if(dealSum === 17 && (dealSum < playSum)) {
+            document.querySelector('#dealerCounter').innerText = dealSum
+            autoDeal()
+          }else if(dealSum > 21) {
+            document.querySelector('#dealerCounter').innerText = 'BUST!'
+            document.querySelector('#gameResult').innerText = "You Win!!!"    
+          }else if(dealSum === 17) {
+            document.querySelector('#dealerCounter').innerText = dealSum  
+          }else if(document.querySelector('#playerCounter').innerText === 'BUST!') {
+            document.querySelector('#dealerCounter').innerText = dealSum
+            document.querySelector('#gameResult').innerText = "Dealer Wins"
+          }else if(dealSum > 17 && (dealSum < playSum)) {
+            document.querySelector('#dealerCounter').innerText = dealSum
+            autoDeal()
+          }else if(dealSum > 17 ) {
+            document.querySelector('#dealerCounter').innerText = dealSum 
+          }else {
+            autoDeal()
+          }
+           
+          dealScreenCount = [dealeraVal, dealerbVal, dealercVal, dealerdVal, dealereVal, dealerfVal]
             
+            
+          third = dealScreenCount.map((num) => convertToNum(num))
+          console.log(third)
+
+          dealSum = third.reduce((partialSum, a) => partialSum + a, 0)
+
+          document.querySelector('#dealerCounter').innerText = dealSum
+
+        }   
+         //CALL THE FUNCTION AGAIN!!!
+         //OR CREAT ANOTHER FUNCTION THAT IS CALLED BY THE ELSE STATEMNET 
+          
+         
+          function autoDeal (){ 
+            fetch(dealerHit)
+                .then(res => res.json())
+                .then(data => {
+                  console.log(data)
+                  //determine how many cards the dealer draws
+                  if(document.querySelector('#dealerc').style.visibility !== 'visible') {
+                    document.querySelector('#dealerc').src = data.cards[0].image
+                    document.querySelector('#dealerc').style.visibility = 'visible'
+                    dealercVal = data.cards[0].value
+                    evaluate()
+                    
+                  }else if(document.querySelector('#dealerd').style.visibility !== 'visible') {
+                    document.querySelector('#dealerd').src = data.cards[0].image
+                    document.querySelector('#dealerd').style.visibility = 'visible'
+                    dealerdVal = data.cards[0].value
+                    evaluate()
+
+                  }else if(document.querySelector('#dealere').style.visibility !== 'visible') {
+                    document.querySelector('#dealere').src = data.cards[0].image
+                    document.querySelector('#dealere').style.visibility = 'visible'
+                    dealereVal = data.cards[0].value
+                    evaluate()
+
+                  }else if(document.querySelector('#dealerf').style.visibility !== 'visible'){
+                    document.querySelector('#dealerf').src = data.cards[0].image
+                    document.querySelector('#dealerf').style.visibility = 'visible'
+                    dealerfVal = data.cards[0].value
+                  }
+                })  
+              
               dealScreenCount = [dealeraVal, dealerbVal, dealercVal, dealerdVal, dealereVal, dealerfVal]
             
             
@@ -257,11 +290,9 @@ function startDeck(){
               dealSum = third.reduce((partialSum, a) => partialSum + a, 0)
 
               document.querySelector('#dealerCounter').innerText = dealSum
-            })  
+            }})  
             .catch(err => {
               console.log(`error ${err}`)
             }); 
           }
-      })    
-    }   
-};
+      };
