@@ -34,10 +34,10 @@ fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6')
 });
 
 function convertToNum(val) {
-  if(val === 'ACE' && (playSum < 22 || dealSum < 22)) {
+  if(val === 'ACE') {
     return 11   
   }else if(val === 'ACE'){
-    return 1
+    return 11
   }else if(val === 'KING'){
     return 10
   }else if(val === 'QUEEN'){
@@ -159,6 +159,7 @@ function startDeck(){
 
           if(playSum > 21){
             document.querySelector('#playerCounter').innerText = 'BUST!'
+            document.querySelector('#gameResult').innerText = 'Dealer Wins'
             dealerDraw()
           }else if(playSum === 21){
             document.querySelector('#playerCounter').innerText = '21!!!'
@@ -203,6 +204,8 @@ function startDeck(){
           if(dealSum > 21){
             document.querySelector('#dealerCounter').innerText = 'BUST!'
             document.querySelector('#gameResult').innerText = "You Win!!!"
+          }else if(document.querySelector('#playerCounter').innerText = 'BUST!'){
+            document.querySelector('#gameResult').innerText = "Dealer Wins"
           }else if(playSum > dealSum){
             document.querySelector('#gameResult').innerText = "You Win!!!"
           }else if(playSum < dealSum ){
