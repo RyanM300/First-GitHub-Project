@@ -218,7 +218,7 @@ function startDeck(){
           }else if(dealSum === 17 && (dealSum < playSum)) {
             document.querySelector('#dealerCounter').innerText = dealSum
             autoDeal()
-          }else if(dealSum > 21) {
+          }else if(document.querySelector('#dealerCounter').innerText === 'BUST!') {
             document.querySelector('#dealerCounter').innerText = 'BUST!'
             document.querySelector('#gameResult').innerText = "You Win!!!"    
           }else if(dealSum === 17) {
@@ -231,6 +231,9 @@ function startDeck(){
             autoDeal()
           }else if(dealSum > 17 ) {
             document.querySelector('#dealerCounter').innerText = dealSum 
+          }else if(dealSum === playSum ) {
+            document.querySelector('#dealerCounter').innerText = dealSum 
+            document.querySelector('#gameResult').innerText = "It's a Tie!!!" 
           }else {
             autoDeal()
           }
@@ -260,24 +263,53 @@ function startDeck(){
                     document.querySelector('#dealerc').src = data.cards[0].image
                     document.querySelector('#dealerc').style.visibility = 'visible'
                     dealercVal = data.cards[0].value
+                    dealScreenCount = [dealeraVal, dealerbVal, dealercVal, dealerdVal, dealereVal, dealerfVal]
+                    third = dealScreenCount.map((num) => convertToNum(num))
+                    console.log(third)
+
+                    dealSum = third.reduce((partialSum, a) => partialSum + a, 0)
+
+                    document.querySelector('#dealerCounter').innerText = dealSum
                     evaluate()
                     
                   }else if(document.querySelector('#dealerd').style.visibility !== 'visible') {
                     document.querySelector('#dealerd').src = data.cards[0].image
                     document.querySelector('#dealerd').style.visibility = 'visible'
                     dealerdVal = data.cards[0].value
+                    dealScreenCount = [dealeraVal, dealerbVal, dealercVal, dealerdVal, dealereVal, dealerfVal]
+                    third = dealScreenCount.map((num) => convertToNum(num))
+                    console.log(third)
+
+                    dealSum = third.reduce((partialSum, a) => partialSum + a, 0)
+
+                    document.querySelector('#dealerCounter').innerText = dealSum
                     evaluate()
 
                   }else if(document.querySelector('#dealere').style.visibility !== 'visible') {
                     document.querySelector('#dealere').src = data.cards[0].image
                     document.querySelector('#dealere').style.visibility = 'visible'
                     dealereVal = data.cards[0].value
+                    dealScreenCount = [dealeraVal, dealerbVal, dealercVal, dealerdVal, dealereVal, dealerfVal]
+                    third = dealScreenCount.map((num) => convertToNum(num))
+                    console.log(third)
+
+                    dealSum = third.reduce((partialSum, a) => partialSum + a, 0)
+
+                    document.querySelector('#dealerCounter').innerText = dealSum
                     evaluate()
 
                   }else if(document.querySelector('#dealerf').style.visibility !== 'visible'){
                     document.querySelector('#dealerf').src = data.cards[0].image
                     document.querySelector('#dealerf').style.visibility = 'visible'
                     dealerfVal = data.cards[0].value
+                    dealScreenCount = [dealeraVal, dealerbVal, dealercVal, dealerdVal, dealereVal, dealerfVal]
+                    third = dealScreenCount.map((num) => convertToNum(num))
+                    console.log(third)
+
+                    dealSum = third.reduce((partialSum, a) => partialSum + a, 0)
+
+                    document.querySelector('#dealerCounter').innerText = dealSum
+                    evaluate()
                   }
                 })  
               
