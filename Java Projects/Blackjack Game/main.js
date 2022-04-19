@@ -33,13 +33,28 @@ fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6')
           console.log(`error ${err}`)
 });
 
-function convertToNum(val) {
-  let d = dealSum
+function convertToNumP(val) {
   let p = playSum
   
-  if((d > 10) && (val === 'ACE')) {
+  if((p > 10) && (val === 'ACE')){
     return 1
-  }else if((p > 10) && (val === 'ACE')){
+  }else if(val === 'ACE') {
+    return 11   
+  }else if(val === 'KING'){
+    return 10
+  }else if(val === 'QUEEN'){
+    return 10
+  }else if(val === 'JACK'){
+    return 10
+  }else{
+    return Number(val)
+  }
+}
+
+function convertToNumD(val) {
+  let d = dealSum
+  
+  if((d > 10) && (val === 'ACE')) {
     return 1
   }else if(val === 'ACE') {
     return 11   
@@ -88,7 +103,7 @@ function startDeck(){
 
         playScreenCount = [playeraVal, playerbVal, playercVal, playerdVal, playereVal, playerfVal]
 
-        first = playScreenCount.map((num) => convertToNum(num))
+        first = playScreenCount.map((num) => convertToNumP(num))
         console.log(first)
 
         playSum = first.reduce((partialSum, a) => partialSum + a, 0)
@@ -155,7 +170,7 @@ function startDeck(){
 
           playScreenCount = [playeraVal, playerbVal, playercVal, playerdVal, playereVal, playerfVal]
 
-          second = playScreenCount.map((num) => convertToNum(num))
+          second = playScreenCount.map((num) => convertToNumP(num))
           console.log(second)
 
           playSum = second.reduce((partialSum, a) => partialSum + a, 0)
@@ -196,7 +211,7 @@ function startDeck(){
 
         dealScreenCount = [dealeraVal, dealerbVal, dealercVal, dealerdVal, dealereVal, dealerfVal]
             
-        third = dealScreenCount.map((num) => convertToNum(num))
+        third = dealScreenCount.map((num) => convertToNumD(num))
         console.log(third)
 
         dealSum = third.reduce((partialSum, a) => partialSum + a, 0)
@@ -246,15 +261,15 @@ function startDeck(){
             autoDeal()
           }
            
-          dealScreenCount = [dealeraVal, dealerbVal, dealercVal, dealerdVal, dealereVal, dealerfVal]
+         /* dealScreenCount = [dealeraVal, dealerbVal, dealercVal, dealerdVal, dealereVal, dealerfVal]
             
             
-          third = dealScreenCount.map((num) => convertToNum(num))
+          third = dealScreenCount.map((num) => convertToNumD(num))
           console.log(third)
 
           dealSum = third.reduce((partialSum, a) => partialSum + a, 0)
 
-          document.querySelector('#dealerCounter').innerText = dealSum
+          document.querySelector('#dealerCounter').innerText = dealSum */
 
         }   
          //CALL THE FUNCTION AGAIN!!!
@@ -272,7 +287,7 @@ function startDeck(){
                     document.querySelector('#dealerc').style.visibility = 'visible'
                     dealercVal = data.cards[0].value
                     dealScreenCount = [dealeraVal, dealerbVal, dealercVal, dealerdVal, dealereVal, dealerfVal]
-                    third = dealScreenCount.map((num) => convertToNum(num))
+                    third = dealScreenCount.map((num) => convertToNumD(num))
                     console.log(third)
 
                     dealSum = third.reduce((partialSum, a) => partialSum + a, 0)
@@ -285,7 +300,7 @@ function startDeck(){
                     document.querySelector('#dealerd').style.visibility = 'visible'
                     dealerdVal = data.cards[0].value
                     dealScreenCount = [dealeraVal, dealerbVal, dealercVal, dealerdVal, dealereVal, dealerfVal]
-                    third = dealScreenCount.map((num) => convertToNum(num))
+                    third = dealScreenCount.map((num) => convertToNumD(num))
                     console.log(third)
 
                     dealSum = third.reduce((partialSum, a) => partialSum + a, 0)
@@ -298,7 +313,7 @@ function startDeck(){
                     document.querySelector('#dealere').style.visibility = 'visible'
                     dealereVal = data.cards[0].value
                     dealScreenCount = [dealeraVal, dealerbVal, dealercVal, dealerdVal, dealereVal, dealerfVal]
-                    third = dealScreenCount.map((num) => convertToNum(num))
+                    third = dealScreenCount.map((num) => convertToNumD(num))
                     console.log(third)
 
                     dealSum = third.reduce((partialSum, a) => partialSum + a, 0)
@@ -311,7 +326,7 @@ function startDeck(){
                     document.querySelector('#dealerf').style.visibility = 'visible'
                     dealerfVal = data.cards[0].value
                     dealScreenCount = [dealeraVal, dealerbVal, dealercVal, dealerdVal, dealereVal, dealerfVal]
-                    third = dealScreenCount.map((num) => convertToNum(num))
+                    third = dealScreenCount.map((num) => convertToNumD(num))
                     console.log(third)
 
                     dealSum = third.reduce((partialSum, a) => partialSum + a, 0)
@@ -324,7 +339,7 @@ function startDeck(){
               dealScreenCount = [dealeraVal, dealerbVal, dealercVal, dealerdVal, dealereVal, dealerfVal]
             
             
-              third = dealScreenCount.map((num) => convertToNum(num))
+              third = dealScreenCount.map((num) => convertToNumD(num))
               console.log(third)
 
               dealSum = third.reduce((partialSum, a) => partialSum + a, 0)
