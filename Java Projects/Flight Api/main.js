@@ -6,7 +6,15 @@ const options = {
 	}
 };
 
-fetch('https://adsbexchange-com1.p.rapidapi.com/v2/lat/51.46888/lon/-0.45536/dist/10/', options)
-	.then(response => response.json())
-	.then(response => console.log(response))
-	.catch(err => console.error(err));
+document.querySelector('.sendIt').addEventListener('click', getPlanes)
+
+function getPlanes() {
+    let lati = document.querySelector('#latitude').value
+    let longi = document.querySelector('#longitude').value
+
+        fetch(`https://adsbexchange-com1.p.rapidapi.com/v2/lat/${lati}/lon/${longi}/dist/100/`, options)
+            .then(response => response.json())
+            .then(response => console.log(response))
+            .catch(err => console.error(err)
+        );
+}
