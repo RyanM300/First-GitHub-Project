@@ -64,6 +64,8 @@ document.addEventListener('keydown', (e) => {
     if (e.key == 'ArrowDown') {
       paddle_2.style.top =
         Math.min(
+
+            
           board_coord.bottom - paddle_common.height,
           paddle_2_coord.top + window.innerHeight * 0.1
         ) + 'px';
